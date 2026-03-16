@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+  <nav class="bg-blue-700 p-4 shadow-lg">
+    <div class="container mx-auto font-bold text-xl">💪 HD Tracker</div>
+  </nav>
+
+  <main class="container mx-auto p-4 md:p-8">
+    <h1 class="text-2xl md:text-4xl font-extrabold mb-6 text-blue-400">Log de Entrenamiento</h1>
+
+    <section class="bg-gray-800 p-6 rounded-xl border border-gray-700 mb-8">
+      <form action="/registrar" method="POST" class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <label class="block text-sm mb-1 text-gray-400">Grupo Muscular</label>
+          <select name="musculo" class="w-full bg-gray-700 border-none rounded p-3 focus:ring-2 focus:ring-blue-500">
+            <option value="Piernas">Piernas (Cuádriceps)</option>
+            <option value="Empuje">Pecho / Hombros</option>
+            <option value="Tracción">Espalda / Bíceps</option>
+            <option value="Piernas_Isquios">Piernas (Isquios)</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label class="block text-sm mb-1 text-gray-400">Ejercicio</label>
+          <input type="text" name="ejercicio" id="ejercicioInput" list="listaEjercicios" required placeholder="Seleccioná o escribí..." class="w-full bg-gray-700 border-none rounded p-3 focus:ring-2 focus:ring-blue-500 text-white">
+
+          <datalist id="listaEjercicios">
+            <option value="Extensiones de piernas">
+            <option value="Prensa de piernas">
+            <option value="Sentadilla">
+            <option value="Curl femoral tumbado">
+            <option value="Peso muerto rumano">
+            <option value="Gemelos de pie">
+
+            <option value="Aperturas con mancuernas">
+            <option value="Press inclinado">
+            <option value="Elevaciones laterales">
+            <option value="Press militar">
+            <option value="Fondos en paralelas">
+            <option value="Press francés">
+
+            <option value="Pull-over">
+            <option value="Jalón al pecho">
+            <option value="Remo con barra">
+            <option value="Curl de bíceps">
+            <option value="Curl Scott">
+
+            <option value="Crunch abdominal">
+          </datalist>
+        </div>
+        <div class="w-full md:w-32">
+          <label class="block text-sm mb-1 text-gray-400">Peso (kg)</label>
+          <input type="number" name="peso" required placeholder="80" class="w-full bg-gray-700 border-none rounded p-3 focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="w-full md:w-32">
+          <label class="block text-sm mb-1 text-gray-400">Reps</label>
+          <input type="number" name="reps" required placeholder="10" class="w-full bg-gray-700 border-none rounded p-3 focus:ring-2 focus:ring-blue-500">
+        </div>
+        <button type="submit" class="md:self-end bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+          Registrar
+        </button>
+      </form>
+    </section>
+
+    <!--div-- class="grid grid-cols-1 gap-4">
+      <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center border-l-4 border-blue-500">
+        <div>
+          <h3 class="font-bold text-lg">Prensa de Piernas</h3>
+          <p class="text-sm text-gray-400">Hoy - Cuádriceps</p>
+        </div>
+        <div class="text-right">
+          <span class="block text-xl font-bold text-blue-300">120 kg</span>
+          <span class="text-sm">9 reps (Fallo)</span>
+        </div>
+      </div>
+    </!--div-->
+
+    <div class="grid grid-cols-1 gap-4">
+      <% entrenamientos.forEach(item => { %>
+      <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center border-l-4 border-blue-500">
+        <div>
+          <h3 class="font-bold text-lg text-white"><%= item.ejercicio %></h3>
+          <p class="text-sm text-gray-400"><%= new Date(item.fecha).toLocaleDateString() %> - <%= item.musculo %></p>
+        </div>
+        <div class="text-right">
+          <span class="block text-xl font-bold text-blue-300"><%= item.peso %> kg</span>
+          <span class="text-sm"><%= item.reps %> reps</span>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </main>
+
+</body>
+
+</html>

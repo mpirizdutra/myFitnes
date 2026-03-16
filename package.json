@@ -1,0 +1,20 @@
+{
+  "name": "fitness-app",
+  "version": "1.0.0",
+  "description": "Tracker de entrenamiento Heavy Duty",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "dotenv": "17.3.1",
+    "ejs": "5.0.1",
+    "express": "5.2.1",
+    "express-basic-auth": "1.2.1",
+    "mysql2": "3.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.14"
+  }
+}
